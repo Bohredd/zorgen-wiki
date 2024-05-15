@@ -15,10 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from . views import list_artigos
+from . views import ArtigosListView
 from . htmx_views import filtrar_artigos_htmx
 urlpatterns = [
-    path("list", list_artigos, name='listarArtigos'),
+    path("list", ArtigosListView.as_view(), name='listarArtigos'),
 ]
 
 htmx_patterns = [
