@@ -1,5 +1,4 @@
-from core.models import Artigo
-from django.shortcuts import render
+from core.models import Artigo, Tipo
 from django.views.generic import ListView
 
 class ArtigosListView(ListView):
@@ -9,3 +8,10 @@ class ArtigosListView(ListView):
 
     def get_queryset(self):
         return Artigo.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['categorias'] = Tipo.choices
+
+        return context

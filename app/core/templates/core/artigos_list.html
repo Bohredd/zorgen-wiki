@@ -1,11 +1,24 @@
 {% extends 'core/base.html' %}
 
-{% block content %}
 {% block titulo %} Zorgen Wiki - Artigos {% endblock %}
 
-WIKI LIST ARTIGOS
-{% for artigo in artigos %}
-    <p> {{artigo}} </p>
-{% endfor %}
+{% block content %}
+    <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
+
+    <h1> WIKI LIST ARTIGOS </h1>
+    <div id="artigos" hx-indicator="dots">
+
+    </div>
+
+    <form hx-get="{% url 'filtrarArtigosHtmx' %}" hx-change="change" hx-target="#artigos"
+          hx-swap="innerHTML" hx-trigger="change">
+
+        <select name="categoria" id="categoria_id">
+            <option value="">Todas as Categorias</option>
+            {% for categoria_id, categoria in categorias %}
+                <option value="{{ categoria_id }}">{{ categoria }}</option>
+            {% endfor %}
+        </select>
+    </form>
 
 {% endblock %}

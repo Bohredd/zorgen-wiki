@@ -1,0 +1,8 @@
+{% for artigo in artigos %}
+    <div class="artigos">
+        <h2>{{ artigo.titulo }}</h2>
+        <p>{{ artigo.conteudo }}</p>
+    </div>
+{% empty %}
+    <p>Nenhum artigo encontrado.</p>
+{% endfor %}

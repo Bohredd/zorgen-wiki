@@ -17,10 +17,12 @@ Including another URLconf
 from django.urls import path
 from . views import ArtigosListView
 from . htmx_views import filtrar_artigos_htmx
-urlpatterns = [
-    path("list", ArtigosListView.as_view(), name='listarArtigos'),
-]
 
 htmx_patterns = [
     path("filtrar-query-artigos", filtrar_artigos_htmx, name="filtrarArtigosHtmx"),
 ]
+
+urlpatterns = [
+    path("list", ArtigosListView.as_view(), name='listarArtigos'),
+    path("filtrar-query-artigos", filtrar_artigos_htmx, name="filtrarArtigosHtmx"),
+] + htmx_patterns

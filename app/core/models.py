@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from decouple import config
 
 def upload_file(instance, filename):
-    return f"{instance.tipo}/{filename}"
+    return f"arquivos/artigos/{instance.pk}/{filename}"
 
 class Tipo(TextChoices):
     documentacao = ('documentacao', "Documentação")
@@ -17,15 +17,11 @@ class Arquivo(models.Model):
         upload_to=upload_file,
     )
 
-    tipo = models.CharField(
-        choices=Tipo.choices,
-        max_length=50,
-        default='Selecione o tipo de Artigo'
-    )
-
 
 class Artigo(models.Model):
     titulo = models.CharField(max_length=100)
+
+    conteudo = models.TextField()
 
     uploader = models.ForeignKey(
         User,
@@ -35,4 +31,9 @@ class Artigo(models.Model):
     arquivos = models.ManyToManyField(
         'Arquivo',
         related_name='arquivos',
+    )
+
+    tipo = models.CharField(
+        choices=Tipo.choices,
+        max_length=50,
     )
