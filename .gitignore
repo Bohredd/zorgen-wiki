@@ -1,4 +1,2 @@
-*.xml
-*.idea
-/venv/
-*.cfg
+*/venv/
+*.py
