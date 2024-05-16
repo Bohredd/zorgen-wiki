@@ -1,5 +1,7 @@
 from core.models import Artigo, Tipo
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, FormView
+from core.forms import ArtigoForms
+
 
 class ArtigosListView(ListView):
     model = Artigo
@@ -15,3 +17,10 @@ class ArtigosListView(ListView):
         context['categorias'] = Tipo.choices
 
         return context
+
+class ArtigosCreateView(FormView):
+
+    template_name = 'core/artigo_create.html'
+    form_class = ArtigoForms
+    success_url = '/'
+    model = Artigo

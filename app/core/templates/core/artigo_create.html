@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block titulo %} Zorgen Wiki - Criando um Artigo {% endblock %}
+
+{% block content %}
+
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form }}
+
+            <button type="submit">Criar Artigo</button>
+
+        </form>
+
+{% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from . views import ArtigosListView
+from . views import ArtigosListView, ArtigosCreateView
 from . htmx_views import filtrar_artigos_htmx
 
 htmx_patterns = [
@@ -25,4 +25,5 @@ htmx_patterns = [
 urlpatterns = [
     path("list", ArtigosListView.as_view(), name='listarArtigos'),
     path("filtrar-query-artigos", filtrar_artigos_htmx, name="filtrarArtigosHtmx"),
+    path("criar/", ArtigosCreateView.as_view(), name='createArtigos'),
 ] + htmx_patterns
